@@ -1,25 +1,25 @@
-package com.pang.beanstalkprac.v2;
+package com.pang.beanstalkprac.app.v3;
 
 import com.pang.beanstalkprac.trace.TraceStatus;
-import com.pang.beanstalkprac.trace.hellotrace.HelloTraceV2;
+import com.pang.beanstalkprac.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class OrderControllerV2 {
+public class OrderControllerV3 {
 
-    private final OrderServiceV2 service;
-    private final HelloTraceV2 trace;
+    private final OrderServiceV3 service;
+    private final LogTrace trace;
 
-    @GetMapping("/v2/request")
+    @GetMapping("/v3/request")
     public String request(String itemId){
         TraceStatus status = null;
 
         try{
             status = trace.begin("OrderController.request()");
-            service.orderItem(status.getTraceId(), itemId);
+            service.orderItem(itemId);
             trace.end(status);
             return "ok";
         } catch (Exception e){

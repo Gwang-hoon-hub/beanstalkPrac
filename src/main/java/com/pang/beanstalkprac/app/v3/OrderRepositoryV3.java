@@ -1,15 +1,16 @@
-package com.pang.beanstalkprac.v1;
+package com.pang.beanstalkprac.app.v3;
 
+import com.pang.beanstalkprac.trace.TraceId;
 import com.pang.beanstalkprac.trace.TraceStatus;
-import com.pang.beanstalkprac.trace.hellotrace.HelloTraceV1;
+import com.pang.beanstalkprac.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV1 {
+public class OrderRepositoryV3 {
 
-    private final HelloTraceV1 trace;
+    private final LogTrace trace;
 
     public void save(String itemId){
 

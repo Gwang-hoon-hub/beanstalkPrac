@@ -1,23 +1,22 @@
-package com.pang.beanstalkprac.v2;
+package com.pang.beanstalkprac.app.v1;
 
-import com.pang.beanstalkprac.trace.TraceId;
 import com.pang.beanstalkprac.trace.TraceStatus;
-import com.pang.beanstalkprac.trace.hellotrace.HelloTraceV2;
+import com.pang.beanstalkprac.trace.hellotrace.HelloTraceV1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV2 {
+public class OrderRepositoryV1 {
 
-    private final HelloTraceV2 trace;
+    private final HelloTraceV1 trace;
 
-    public void save(TraceId traceId, String itemId){
+    public void save(String itemId){
 
         TraceStatus status = null;
 
         try{
-            status = trace.beginSync(traceId,"OrderRepository.save()");
+            status = trace.begin("OrderRepository.save()");
 
             // 저장로직
             if(itemId.equals("ex")){

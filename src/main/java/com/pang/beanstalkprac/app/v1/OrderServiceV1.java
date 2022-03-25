@@ -1,32 +1,28 @@
-package com.pang.beanstalkprac.v1;
+package com.pang.beanstalkprac.app.v1;
 
 import com.pang.beanstalkprac.trace.TraceStatus;
 import com.pang.beanstalkprac.trace.hellotrace.HelloTraceV1;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
-@RestController
-public class OrderControllerV1 {
-
-    private final OrderServiceV1 service;
+public class OrderServiceV1 {
+    private final OrderRepositoryV1 orderRepository;
     private final HelloTraceV1 trace;
 
-    @GetMapping("/v1/request")
-    public String request(String itemId){
+    public void orderItem(String itemId){
         TraceStatus status = null;
 
         try{
-            status = trace.begin("OrderController.request()");
-            service.orderItem(itemId);
+            status = trace.begin("OrderService.orderItem()");
+            orderRepository.save(itemId);
             trace.end(status);
-            return "ok";
         } catch (Exception e){
             trace.exception(status, e);
             throw e; // 반드시 예외를 다시 던져 주어야한다.
         }
 
-
     }
+
 }

@@ -1,4 +1,4 @@
-package com.pang.beanstalkprac.v2;
+package com.pang.beanstalkprac.app.v2;
 
 import com.pang.beanstalkprac.trace.TraceId;
 import com.pang.beanstalkprac.trace.TraceStatus;

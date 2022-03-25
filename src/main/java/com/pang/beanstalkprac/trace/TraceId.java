@@ -30,6 +30,10 @@ public class TraceId {
     public boolean isFirstLevel(){
         return level == 0;
     }
+
+    public TraceId createPreviousId() {
+        return new TraceId(id, level - 1);
+    }
 }
 
 

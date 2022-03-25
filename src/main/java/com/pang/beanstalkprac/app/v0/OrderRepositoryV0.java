@@ -1,4 +1,4 @@
-package com.pang.beanstalkprac.v0;
+package com.pang.beanstalkprac.app.v0;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
