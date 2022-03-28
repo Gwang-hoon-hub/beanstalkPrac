@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class FieldServiceTest {
+public class ThreadLocalFieldServiceTest {
 
     private FieldService fieldService = new FieldService();
 
@@ -24,7 +24,7 @@ public class FieldServiceTest {
         threadB.setName("thread-B");
 
         threadA.start();
-        sleep(100);    // 동시성 문제. : 같은 필드를 공유함.
+        sleep(100);
         threadB.start();
 
         sleep(3000);
