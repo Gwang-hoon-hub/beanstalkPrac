@@ -1,5 +1,8 @@
 package com.pang.beanstalkprac.trace.strategy;
 
+import com.pang.beanstalkprac.trace.strategy.code.strategy.ContextV1;
+import com.pang.beanstalkprac.trace.strategy.code.strategy.Strategy;
+import com.pang.beanstalkprac.trace.strategy.code.strategy.StrategyLogic1;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +32,27 @@ public class ContextV1Test {
         long endTime = System.currentTimeMillis();
         long resultTime = endTime - startTime;
         log.info("resultTime = {}" , resultTime);
+    }
+
+    /**
+     * 전략 패턴 사용
+     */
+    @org.junit.Test
+    void strategyV1(){
+        StrategyLogic1 strategyLogic1 = new StrategyLogic1();
+        ContextV1 contextV1 = new ContextV1(strategyLogic1);
+        contextV1.execute();
+    }
+
+    @org.junit.Test
+    void strategyV2(){
+        Strategy strategy1 = new Strategy() {
+            @Override
+            public void call() {
+                log.info("비즈니스 로직1 실행");
+            }
+        };
+        ContextV1 contextV1 = new ContextV1(strategy1);
+        contextV1.execute();
     }
 }
